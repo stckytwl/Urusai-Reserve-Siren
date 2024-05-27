@@ -35,13 +35,11 @@ public class ChangeReserveSirenVolumePatch : ModulePatch
     {
         if (SirenObjectNames.All(x => x != __instance.name) || __instance.gameObject.transform.childCount < 1)
         {
-            Utils.Logger.LogDebug($"Skipping object \"{__instance.name}\" due to not being a siren object or has no children.");
             return;
         }
         
         if ((state != EDoorState.Open) == (state != EDoorState.Shut))
         {
-            Utils.Logger.LogDebug($"Skipping object \"{__instance.name}\" due to door state being {state}, not Open or Shut.");
             return;
         }
 

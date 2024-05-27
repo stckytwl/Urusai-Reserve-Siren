@@ -33,7 +33,6 @@ public class SirenController : MonoBehaviour
 
     private void Kill()
     {
-        Utils.Logger.LogDebug($"Killed SirenController of {transform.name} after {_clipLength * ChangeReserveSirenVolumePatch.PlayAmount} seconds.");
         Destroy(this);
     }
 }
