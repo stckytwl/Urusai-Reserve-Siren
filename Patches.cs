@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using Aki.Reflection.Patching;
-using UnityEngine;
+using Comfort.Common;
+using EFT;
+using EFT.Interactive;
 
 namespace stckytwl.UrusaiRen;
 
@@ -17,6 +20,8 @@ public class ChangeReserveSirenVolumePatch : ModulePatch
         "Siren_04",
         "Siren_05",
     ];
+
+    public static int PlayAmount;
     
     protected override MethodBase GetTargetMethod()
     {
@@ -25,18 +30,38 @@ public class ChangeReserveSirenVolumePatch : ModulePatch
 
     [PatchPostfix]
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public static void PatchPostfix(InteractiveSubscriber __instance)
+    public static void PatchPostfix(InteractiveSubscriber __instance, EDoorState state)
     {
         if (SirenObjectNames.All(x => x != __instance.name) || __instance.gameObject.transform.childCount < 1)
         {
-            Logger.LogInfo($"Skipping object \"{__instance.name}\" due to not being a siren object or has no children");
+            Utils.Logger.LogDebug($"Skipping object \"{__instance.name}\" due to not being a siren object or has no children.");
+            return;
+        }
+        
+        if ((state != EDoorState.Open) == (state != EDoorState.Shut))
+        {
+            Utils.Logger.LogDebug($"Skipping object \"{__instance.name}\" due to door state being {state}, not Open or Shut.");
             return;
         }
 
         if (__instance.Sounds is null)
         {
-            Logger.LogError($"Why tf does {__instance.name} have a null sounds field???");
+            Utils.Logger.LogDebug($"Why tf does {__instance.name} have a null sounds field???");
             return;
+        }
+
+        switch (state)
+        {
+            case EDoorState.Open:
+                PlayAmount = Plugin.StartPlayAmount.Value;
+                break;
+            case EDoorState.Shut:
+                PlayAmount = Plugin.EndPlayAmount.Value;
+                break;
+            default: // Shouldn't happen.
+                PlayAmount = 1;
+                Utils.Logger.LogError($"{__instance.name} is of state {state} when it shouldn't!");
+                break;
         }
         
         __instance.gameObject.AddComponent<SirenController>();
