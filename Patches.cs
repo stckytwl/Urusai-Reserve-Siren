@@ -19,11 +19,11 @@ public class ChangeReserveSirenVolumePatch : ModulePatch
         "Siren_02",
         "Siren_03",
         "Siren_04",
-        "Siren_05",
+        "Siren_05"
     ];
 
     public static int PlayAmount;
-    
+
     protected override MethodBase GetTargetMethod()
     {
         return AccessTools.Method(typeof(InteractiveSubscriber), "PlaySounds");
@@ -33,15 +33,9 @@ public class ChangeReserveSirenVolumePatch : ModulePatch
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public static void PatchPostfix(InteractiveSubscriber __instance, EDoorState state)
     {
-        if (SirenObjectNames.All(x => x != __instance.name) || __instance.gameObject.transform.childCount < 1)
-        {
-            return;
-        }
-        
-        if ((state != EDoorState.Open) == (state != EDoorState.Shut))
-        {
-            return;
-        }
+        if (SirenObjectNames.All(x => x != __instance.name) || __instance.gameObject.transform.childCount < 1) return;
+
+        if (state != EDoorState.Open == (state != EDoorState.Shut)) return;
 
         switch (state)
         {
@@ -56,7 +50,7 @@ public class ChangeReserveSirenVolumePatch : ModulePatch
                 Utils.Logger.LogError($"{__instance.name} is of state {state} when it shouldn't!");
                 break;
         }
-        
+
         __instance.gameObject.AddComponent<SirenController>();
     }
 }
