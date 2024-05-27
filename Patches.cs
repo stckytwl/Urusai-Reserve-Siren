@@ -7,6 +7,7 @@ using Aki.Reflection.Patching;
 using Comfort.Common;
 using EFT;
 using EFT.Interactive;
+using HarmonyLib;
 
 namespace stckytwl.UrusaiRen;
 
@@ -25,7 +26,7 @@ public class ChangeReserveSirenVolumePatch : ModulePatch
     
     protected override MethodBase GetTargetMethod()
     {
-        return typeof(InteractiveSubscriber).GetMethod("PlaySounds", BindingFlags.Instance | BindingFlags.Public);
+        return AccessTools.Method(typeof(InteractiveSubscriber), "PlaySounds");
     }
 
     [PatchPostfix]
@@ -41,12 +42,6 @@ public class ChangeReserveSirenVolumePatch : ModulePatch
         if ((state != EDoorState.Open) == (state != EDoorState.Shut))
         {
             Utils.Logger.LogDebug($"Skipping object \"{__instance.name}\" due to door state being {state}, not Open or Shut.");
-            return;
-        }
-
-        if (__instance.Sounds is null)
-        {
-            Utils.Logger.LogDebug($"Why tf does {__instance.name} have a null sounds field???");
             return;
         }
 
