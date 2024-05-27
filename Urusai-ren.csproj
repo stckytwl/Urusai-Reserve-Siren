@@ -37,6 +37,7 @@
         <TarkovBepInExCoreDir>K:\Games\SPT - 3.8.3 - Dev\BepInEx\core\</TarkovBepInExCoreDir>
         <TarkovBepInExSptPluginDir>K:\Games\SPT - 3.8.3 - Dev\BepInEx\plugins\spt\</TarkovBepInExSptPluginDir>
         <TargetSptVersion>3.8.3</TargetSptVersion>
+        <SourceRevisionId>1.0.0</SourceRevisionId>
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="HarmonyLib">
@@ -97,7 +98,7 @@
 
         <RemoveDir Directories="$(ProjectDir)release"/>
         <Copy SourceFiles="@(OutputDLL);@(Resources)" DestinationFolder="$(ProjectDir)release\$(TargetName)\BepInEx\plugins\$(TargetName)"/>
-        <ZipDirectory SourceDirectory="$(ProjectDir)release\$(TargetName)\" DestinationFile="$(ProjectDir)release\$(TargetName)-$(Version)-$(SourceRevisionId).zip"/>
+        <ZipDirectory SourceDirectory="$(ProjectDir)release\$(TargetName)\" DestinationFile="$(ProjectDir)release\$(TargetName)-$(TargetSptVersion)-$(SourceRevisionId).zip"/>
     </Target>
 
 </Project>
