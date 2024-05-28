@@ -2,7 +2,7 @@
 
 namespace stckytwl.UrusaiRen;
 
-public class Utils
+public static class Utils
 {
     public static ManualLogSource Logger;
 }

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using Aki.Reflection.Patching;
-using Comfort.Common;
-using EFT;
 using EFT.Interactive;
 using HarmonyLib;
 
