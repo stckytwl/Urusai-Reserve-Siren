@@ -19,6 +19,6 @@ public class Plugin : BaseUnityPlugin
             new ConfigDescription("How many time the siren will blare when switch expires", null,
                 new ConfigurationManagerAttributes { IsAdvanced = true, Order = 0 }));
 
-        new ChangeReserveSirenVolumePatch().Enable();
+        new AddSirenControllerPatch().Enable();
     }
 }

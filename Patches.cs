@@ -2,13 +2,13 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
-using Aki.Reflection.Patching;
+using SPT.Reflection.Patching;
 using EFT.Interactive;
 using HarmonyLib;
 
 namespace stckytwl.UrusaiRen;
 
-public class ChangeReserveSirenVolumePatch : ModulePatch
+public class AddSirenControllerPatch : ModulePatch
 {
     private static readonly List<string> SirenObjectNames =
     [

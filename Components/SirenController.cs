@@ -14,7 +14,7 @@ public class SirenController : MonoBehaviour
         _clipLength = sirenAudioSource.clip.length;
 
         StartCoroutine(Work(sirenAudioSource));
-        Invoke(nameof(Kill), _clipLength * ChangeReserveSirenVolumePatch.PlayAmount);
+        Invoke(nameof(Kill), _clipLength * AddSirenControllerPatch.PlayAmount);
     }
 
     private IEnumerator Work(AudioSource sirenAudioSource)
@@ -22,7 +22,7 @@ public class SirenController : MonoBehaviour
         yield return null;
         sirenAudioSource.Stop();
         yield return null;
-        for (var i = 0; i < ChangeReserveSirenVolumePatch.PlayAmount; i++)
+        for (var i = 0; i < AddSirenControllerPatch.PlayAmount; i++)
         {
             sirenAudioSource.PlayOneShot(sirenAudioSource.clip);
             yield return new WaitForSeconds(_clipLength);

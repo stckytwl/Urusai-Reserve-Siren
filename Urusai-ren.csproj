@@ -32,22 +32,22 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <PropertyGroup>
-        <TarkovDir Condition=" '$(TarkovDir)' == '' ">K:\Games\SPT - 3.8.3 - Dev\</TarkovDir>
-        <TarkovManagedDir>K:\Games\SPT - 3.8.3 - Dev\EscapeFromTarkov_Data\Managed\</TarkovManagedDir>
-        <TarkovBepInExCoreDir>K:\Games\SPT - 3.8.3 - Dev\BepInEx\core\</TarkovBepInExCoreDir>
-        <TarkovBepInExSptPluginDir>K:\Games\SPT - 3.8.3 - Dev\BepInEx\plugins\spt\</TarkovBepInExSptPluginDir>
-        <TargetSptVersion>3.8.3</TargetSptVersion>
+        <TarkovDir Condition=" '$(TarkovDir)' == '' ">D:\Games\SPT - 3.9.0 - Dev\</TarkovDir>
+        <TarkovManagedDir>D:\Games\SPT - 3.9.0 - Dev\EscapeFromTarkov_Data\Managed\</TarkovManagedDir>
+        <TarkovBepInExCoreDir>D:\Games\SPT - 3.9.0 - Dev\BepInEx\core\</TarkovBepInExCoreDir>
+        <TarkovBepInExSptPluginDir>D:\Games\SPT - 3.9.0 - Dev\BepInEx\plugins\spt\</TarkovBepInExSptPluginDir>
+        <TargetSptVersion>3.9.0</TargetSptVersion>
         <SourceRevisionId>1.0.0</SourceRevisionId>
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="HarmonyLib">
             <HintPath>$(TarkovBepInExCoreDir)0Harmony.dll</HintPath>
         </Reference>
-        <Reference Include="Aki.Reflection">
-            <HintPath>$(TarkovManagedDir)Aki.Common.dll</HintPath>
+        <Reference Include="SPT.Reflection">
+            <HintPath>$(TarkovBepInExSptPluginDir)spt-reflection.dll</HintPath>
         </Reference>
-        <Reference Include="Aki.Common">
-            <HintPath>$(TarkovManagedDir)Aki.Reflection.dll</HintPath>
+        <Reference Include="SPT.Common">
+            <HintPath>$(TarkovBepInExSptPluginDir)spt-common.dll</HintPath>
         </Reference>
         <Reference Include="Assembly-CSharp">
             <HintPath>$(TarkovManagedDir)Assembly-CSharp.dll</HintPath>
