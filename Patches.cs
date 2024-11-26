@@ -23,7 +23,7 @@ public class AddSirenControllerPatch : ModulePatch
 
     protected override MethodBase GetTargetMethod()
     {
-        return AccessTools.Method(typeof(InteractiveSubscriber), "PlaySounds");
+        return AccessTools.Method(typeof(InteractiveSubscriber), nameof(InteractiveSubscriber.PlaySounds));
     }
 
     [PatchPostfix]
